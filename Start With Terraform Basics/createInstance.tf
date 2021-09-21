@@ -1,10 +1,10 @@
+provider "aws" {
+  access_key = "AKIAXMQMEQ35UU7KVE4K"
+  secret_key = "SECRET KEY_HERE"
+  region = "us-west-2" 
+}
 
-resource "aws_instance" "MyFirstInstnace" {
-  count         = 3
-  ami           = "ami-0bff25b43a4479334"
-  instance_type = "t4g.micro"
-
-  tags = {
-    Name = "demoinstnce-${count.index}"
-  }
+resource "aws_instance" "MyFirstInstance" {
+  ami = "ami-0c2d06d50ce30b442"
+  instance_type = "t2.micro"
 }
