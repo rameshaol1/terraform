@@ -27,6 +27,6 @@ variable "PATH_TO_PUBLIC_KEY" {
   default = "levelup_key.pub"
 }
 
-variable "INSTANCE_USENAME" {
+variable "INSTANCE_USERNAME" {
   default = "rkasula"
 }
