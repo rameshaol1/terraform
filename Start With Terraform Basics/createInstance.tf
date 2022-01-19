@@ -4,6 +4,6 @@ resource "aws_instance" "aws-practice-instance" {
    instance_type = "t2.micro"
 }
 
-   tags = {
+   tags  {
       Name = "aws-linux00-$(count.index)"
    }
