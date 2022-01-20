@@ -4,18 +4,3 @@ variable "AWS_SECRET_KEY" {}
 variable "AWS_REGION" {
     default = "us-west-2"
 }
-
-variable "Security_Group"{
-    type = list
-    default = ["sg-24076", "sg-90890", "sg-456789"]
-}
-
-variable "AMIS" {
-    type = map
-    default = {
-        us-east-1 = "ami-087c17d1fe0178315"
-        us-east-2 = "ami-00dfe2c7ce89a450b"
-        us-west-2 = "ami-0c2d06d50ce30b442"
-        us-west-1 = "ami-011996ff98de391d1"
-    }
-}
