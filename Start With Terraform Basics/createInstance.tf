@@ -1,6 +1,6 @@
 resource "aws_instance" "aws-practice-instance" {
-   count = 3
-   ami = "ami-0c2d06d50ce30b442"
+   count = 1
+   ami = "ami-0892d3c7ee96c0bf7"
    instance_type = "t2.micro"
 
    tags = {
