@@ -10,7 +10,7 @@ variable "Security_Group" {
   default = ["sg-34432", "sg-69790", "sg-93652"]
 }
 
-varibale "AMIS"{
+variable "AMIS"{
   type = map
   default = {
       us-east-1 = "ami-087c17d1fe0178315"
