@@ -6,7 +6,7 @@ data "aws_ami" "latest-ubuntu" {
 
   filter{
     name = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.4-amd-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-20.4-amd-server-*"]
   }
   filter {
     name = "virtualization-type"
