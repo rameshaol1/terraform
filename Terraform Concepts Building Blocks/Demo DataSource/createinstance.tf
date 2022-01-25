@@ -21,15 +21,15 @@ resource "aws_instance" "MyFirstInstnace" {
   instance_type = "t2.micro"
   availability_zone = data.aws_availability_zones.avilable.names[1]
 
-  tags = {
-    name = "terraform-lnx001"
-  }
-
   provisioner "local-exec" {
-    command = "echo aws_instance.MyFirstInstnace.private_ip >> my_private_ips.txt"
+    command = "echo ${aws_instance.MyFirstInstnace.private_ip} >> my_private_ips.txt"
   }
 
-  output "public_ip" {
-    value = "aws_instance.MyFirstInstnace.public_ip"
+  tags = {
+    Name = "terraform-ublnx001"
   }
+}
+
+output "public_ip" {
+  value = aws_instance.MyFirstInstnace.public_ip 
 }
