@@ -2,9 +2,9 @@ data "aws_availability_zones" "available" {}
 
 data "aws_ami" "latest-ubuntu" {
   most_recent = true
-  owners = ["099720109477"]
+  owner = ["099720109477"]
 
-  filter{
+  filter {
     name = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-20.4-amd-server-*"]
   }
