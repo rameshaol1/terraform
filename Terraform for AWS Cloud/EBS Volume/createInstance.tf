@@ -6,7 +6,7 @@ resource "aws_key_pair" "levelup_key" {
 resource "aws_instance" "MyFirstInstance" {
     ami = lookup(var.AMIS, var.AWS_REGION)
     instance_type = "t2.micro"
-    key_name = aws_key_par.levelup_key.key_name
+    key_name = aws_key_pair.levelup_key.key_name
 
     tags = {
         name = "custom-instance"
@@ -17,7 +17,7 @@ resource "aws_instance" "MyFirstInstance" {
 resource "aws_ebs_volume" "ebs-volume-1" {
     availability_zone = "us-west-2a"
     size = 50
-    type = gp3
+    type = gp2
     tags = {
       "name" = "Second Volume disk "
     }
