@@ -17,9 +17,9 @@ resource "aws_instance" "MyFirstInstance" {
 resource "aws_ebs_volume" "ebs-volume-1" {
     availability_zone = "us-west-2a"
     size = 50
-    type = gp2
+    type = "gp2"
     tags = {
-      "name" = "Second Volume disk "
+      name = "Second Volume disk"
     }
 }
 
