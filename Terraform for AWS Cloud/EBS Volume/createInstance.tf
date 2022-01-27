@@ -8,7 +8,7 @@ resource "aws_key_pair" "levelup_key" {
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
   instance_type = "t2.micro"
-  availability_zone = "us-west-2a"
+  availability_zone = "us-west-2b"
   key_name      = aws_key_pair.levelup_key.key_name
 
   tags = {
@@ -18,7 +18,7 @@ resource "aws_instance" "MyFirstInstnace" {
 
 #EBS resource Creation
 resource "aws_ebs_volume" "ebs-volume-1" {
-  availability_zone = "us-west-2a"
+  availability_zone = "us-west-2b"
   size              = 50
   type              = "gp2"
 
