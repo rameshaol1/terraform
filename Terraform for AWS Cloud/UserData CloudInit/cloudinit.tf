@@ -1,5 +1,5 @@
 data "template_file" "install_apache" {
-  template = file(init.cfg)
+  template = file("init.cfg")
 }
 
 data "template_cloudinit_config" "install-apache-config" {
