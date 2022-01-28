@@ -18,4 +18,7 @@ resource "aws_instance" "MyFirstInstnace" {
   }
 }
 
+output "public_ip" {
+  value = aws_instance.MyFirstInstnace.public_ip
+}
 
