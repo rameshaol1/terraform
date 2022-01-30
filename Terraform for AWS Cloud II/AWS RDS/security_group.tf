@@ -1,4 +1,4 @@
-#Security Group for allowing SSH connection
+#Security Group for levelupvpc
 resource "aws_security_group" "allow-levelup-ssh" {
   vpc_id      = aws_vpc.levelupvpc.id
   name        = "allow-levelup-ssh"
@@ -23,11 +23,11 @@ resource "aws_security_group" "allow-levelup-ssh" {
   }
 }
 
-#Security group for allowing MariaDB
+#Security Group for MariaDB
 resource "aws_security_group" "allow-mariadb" {
   vpc_id      = aws_vpc.levelupvpc.id
   name        = "allow-mariadb"
-  description = "security group that allows MariaDB"
+  description = "security group for Maria DB"
 
   egress {
     from_port   = 0
@@ -40,7 +40,7 @@ resource "aws_security_group" "allow-mariadb" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.allow-levelup-ssh.id]
+    security_groups = [aws_security_group.allow-levelup-ssh.id]
   }
   
   tags = {
