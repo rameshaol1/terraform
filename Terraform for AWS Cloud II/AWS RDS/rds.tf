@@ -21,7 +21,7 @@ resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
 resource "aws_db_instance" "levelup-mariadb" {
   allocated_storage       = 20             # 20 GB of storage
   engine                  = "mariadb"
-  engine_version          = "10.5.8"
+  engine_version          = "10.5"
   instance_class          = "db.t2.micro"  # use micro if you want to use the free tier
   identifier              = "mariadb"
   name                    = "mariadb"
