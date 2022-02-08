@@ -4,7 +4,14 @@ resource "aws_launch_configuration" "levelup-launchconfig" {
     image_id = lookup(var.AMIS, var.AWS_REGION)
     instance_type = "t2.micro"
     key_name = aws_key_pair.levelup_key.key_name
+    security_groups = [aws_security_group.levelup-instance.id]
+    user_data = "/bin/bash\napt-get update\napt-get -y install net-tools nginx\nMYIP=`ifconfig | grep -E '(inet 10)|(addr:10)' | awk '{ print $2 }' | cut -d ':' -f2`\necho 'Hello Team\nThis is my IP: '$MYIP > /var/www/html/index.html"
+
+    lifecycle {
+      create_before_destroy = true
+    }
 }
+ 
 
 #Generate the key
 resource "aws_key_pair" "levelup_key" {
@@ -15,7 +22,7 @@ resource "aws_key_pair" "levelup_key" {
 #Autoscaling Group
 resource "aws_autoscaling_group" "levelup-autoscaling" {
     name = "levelup-autoscaling"
-    vpc_zone_identifier = ["subnet-070460943cccd0547", "subnet-08d7b7ceb4b547f79"]
+    vpc_zone_identifier = ["aws_subnet.levelupvpc-public-1.id", "aws_subnet.levelupvpc-public-2.id"]
     launch_configuration = aws_launch_configuration.levelup-launchconfig.name
     min_size = 1
     max_size = 2
@@ -25,61 +32,11 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
 
     tag {
       key   = "Name"
-      value = "Levelup Custom EC2 instance"
+      value = "Levelup Custom EC2 instance via ELB"
       propagate_at_launch = true
     }  
 }
 
-#Autoscaling Configuration Policy  - Scaling Alarm
-resource "aws_autoscaling_policy" "levelup-cpu-policy" {  
-    name = "levelup-cpu-policy"
-    autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
-    adjustment_type = "ChangeInCapacity"
-    scaling_adjustment = "1"
-    cooldown = "200"
-    policy_type = "SimpleScaling"
-}
-
-#Autoscaling Cloudwatch Monitoring
-resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
-    alarm_name = "levelup-cpu-alarm"
-    alarm_description = "Alarm once CPU use is increase"
-    comparison_operator = "GreaterThanOrEqualToThreshold"
-    evaluation_periods = "2"
-    metric_name = "CPUUtilization"
-    namespace = "AWS/EC2"
-    period = "120"
-    statistic = "Average"
-    threshold = "30"
-
-    dimensions = {
-        "AutoScalingGroupName" = aws_autoscaling_group.levelup-autoscaling.name
-    }
-}
-
-#Autoscaling Descaling 
-resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {  
-    name = "levelup-cpu-policy-scaledown"
-    autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
-    adjustment_type = "ChangeInCapacity"
-    scaling_adjustment = "-1"
-    cooldown = "200"
-    policy_type = "SimpleScaling"
-}
-
-#Auto Descaling Cloud Watch
-resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
-    alarm_name = "levelup-cpu-alarm-scaledown"
-    alarm_description = "Alarm once CPU use is decrease"
-    comparison_operator = "LessThanOrEqualToThreshold"
-    evaluation_periods = "2"
-    metric_name = "CPUUtilization"
-    namespace = "AWS/EC2"
-    period = "120"
-    statistic = "Average"
-    threshold = "10"
-
-    dimensions = {
-        "AutoScalingGroupName" = aws_autoscaling_group.levelup-autoscaling.name
-    }
+output "ELB" {
+    value = aws_elb.leveup_elb.dns_name
 }
