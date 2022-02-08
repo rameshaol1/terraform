@@ -24,7 +24,7 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
     name = "levelup-autoscaling"
     vpc_zone_identifier = ["aws_subnet.levelupvpc-public-1.id", "aws_subnet.levelupvpc-public-2.id"]
     launch_configuration = aws_launch_configuration.levelup-launchconfig.name
-    min_size = 1
+    min_size = 2
     max_size = 2
     health_check_grace_period = 200
     health_check_type = "EC2"
