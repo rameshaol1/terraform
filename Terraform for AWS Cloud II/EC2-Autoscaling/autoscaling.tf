@@ -24,8 +24,8 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
     force_delete = "true"
 
     tag {
-      Key   = "Name"
-      Value = "Levelup Custom EC2 instance"
+      key   = "Name"
+      value = "Levelup Custom EC2 instance"
       propagate_at_launch = true
     }  
 }
