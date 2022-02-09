@@ -1,4 +1,4 @@
-module "ec2-cluster" {
+module "ec2_cluster" {
     source = "https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"
 
     name = "my-cluster"
