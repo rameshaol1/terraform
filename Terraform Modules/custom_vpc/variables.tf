@@ -17,7 +17,7 @@ variable "vpcname" {
 variable "cidr" {
   description = "The CIDR block for the VPC"
   type        = string
-  default     = "0.0.0.0/16"
+  default     = "0.0.0.0/0"
 }
 
 variable "instance_tenancy" {
