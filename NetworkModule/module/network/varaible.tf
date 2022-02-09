@@ -24,3 +24,7 @@ variable "environment_tag" {
   description = "Environment tag"
   default = "Production" 
 }
+
+variable "region" {
+  default = "us-west-2"  
+}
