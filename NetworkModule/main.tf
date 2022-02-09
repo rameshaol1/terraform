@@ -12,7 +12,7 @@ module "myvpc" {
 
 #Resource Key Pair
 resource "aws_key_pair" "levelup_key" {
-  name = "levelup_key"
+  key_name = "levelup_key"
   public_key = file(var.public_key_path)
 }
 
