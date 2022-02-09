@@ -1,5 +1,5 @@
 module "ec2_cluster" {
-    source = "https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"
+    source = "github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"
 
     name = "my-cluster"
     ami  = "ami-0892d3c7ee96c0bf7"
