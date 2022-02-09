@@ -1,16 +1,16 @@
 variable "AWS_ACCESS_KEY" {
-    type = "string"
+    type = string
     default = "AKIAUORRFWQM23JZ6TMY"  
 }
 
 variable "AWS_REGION" {
-    type = "string"
+    type = string
     default = "us-west-2"  
 }
 
 variable "vpcname" {
     description = "Name to be used on all the resources as identifier"
-    type = "string"
+    type = string
     default = ""
 }
 
