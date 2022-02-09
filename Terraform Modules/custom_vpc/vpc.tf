@@ -12,5 +12,6 @@ resource "aws_vpc" "aws_vpc_levelup" {
   tags = {
       name = var.vpcname
       environment = var.vpcenvironment
-  }  
+  }
+  
 }
