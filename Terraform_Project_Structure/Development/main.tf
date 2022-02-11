@@ -1,6 +1,6 @@
 #Create Resource for Development Environment
 module "dev-vpc" {
-    source = "../Modules/instances"
+    source = "../Modules/vpc"
 
     ENVIRONMENT = var.ENVIRONMENT
     AWS_REGION = var.AWS_REGION
