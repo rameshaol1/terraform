@@ -1,9 +1,11 @@
+#Define Variable for Custom Module VPC
+
 variable "AWS_REGION" {
-    type = "string"
-    default = "us-west-2"  
+    type    = string
+    default = "us-west-2"
 }
 
 variable "ENVIRONMENT" {
-    type = "string"
-    default = ""  
+    type    = string
+    default = ""
 }
