@@ -1,6 +1,6 @@
 # Create Instance uisng Custom VPC
 
-module "develop-vpc" {
+module "custom-vpc" {
     source      = "../modules/vpc"
 
     ENVIRONMENT = var.ENVIRONMENT
@@ -19,7 +19,7 @@ resource "aws_key_pair" "levelup_key" {
 
 #Secutiry Group for Instances
 resource "aws_security_group" "allow-ssh" {
-  vpc_id      = module.develop-vpc.my_vpc_id
+  vpc_id      = module.custom-vpc.my_vpc_id
   name        = "allow-ssh-${var.ENVIRONMENT}"
   description = "security group that allows ssh traffic"
 
